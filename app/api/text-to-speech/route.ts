@@ -1,6 +1,3 @@
-/* app/api/text-to-speech/route.ts
-   Turn text into speech by POSTing to OpenAI’s /v1/audio/speech endpoint */
-
 export async function POST(req: Request) {
   try {
     const { text } = await req.json()
@@ -17,10 +14,11 @@ export async function POST(req: Request) {
         Accept: "audio/mpeg",
       },
       body: JSON.stringify({
-        model: "tts-1", // or "tts-1-hd" if you have access
+        model: "tts-1-hd", // Higher quality model for clearer voice
         input: text,
-        voice: "nova", // alloy | echo | fable | onyx | nova | shimmer
-        speed: 0.9,
+        voice: "nova", // Clear female voice
+        speed: 0.95, // Slightly slower for clarity
+        response_format: "mp3",
       }),
     })
 
@@ -35,6 +33,7 @@ export async function POST(req: Request) {
       headers: {
         "Content-Type": "audio/mpeg",
         "Content-Length": String(audioArrayBuffer.byteLength),
+        "Cache-Control": "no-cache",
       },
     })
   } catch (err) {

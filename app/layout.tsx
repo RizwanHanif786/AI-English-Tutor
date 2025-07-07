@@ -3,8 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'AI English Tutor',
-  description: 'An AI-powered English tutor to help you learn and practice English.',
-  generator: '',
+  description: 'Create your own AI English tutor with OpenAI and Next.js',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
